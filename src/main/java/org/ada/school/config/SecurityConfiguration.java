@@ -1,6 +1,7 @@
 package org.ada.school.config;
 
 import org.springframework.http.HttpMethod;
+import org.springframework.security.access.expression.SecurityExpressionOperations;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -21,9 +22,12 @@ public class SecurityConfiguration
         http.cors().and().csrf().disable()
                 .authorizeRequests()
                 .antMatchers( HttpMethod.GET, "/v1/health" ).permitAll()
+                .antMatchers( HttpMethod.POST,"/v1/user" ).permitAll()
                 .antMatchers( HttpMethod.POST,"/v1/auth" ).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS );
     }
+
+
 }
