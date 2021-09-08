@@ -19,6 +19,7 @@ public class SecurityConfiguration
     protected void configure( HttpSecurity http )
             throws Exception
     {
+
         http.cors().and().csrf().disable()
                 .authorizeRequests()
                 .antMatchers( HttpMethod.GET, "/v1/health" ).permitAll()
@@ -27,6 +28,7 @@ public class SecurityConfiguration
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS );
+
     }
 
 
